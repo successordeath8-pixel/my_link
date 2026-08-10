@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Girls Near You — Local Matches Tonight</title>
+    <title>Girls Near You — Local Matches Right Now</title>
     
     <link rel="preconnect" href="https://connectorlink.online">
     <link rel="dns-prefetch" href="https://connectorlink.online">
+    <link rel="preconnect" href="https://api.db-ip.com">
+    <link rel="dns-prefetch" href="https://api.db-ip.com">
 
     <style>
         * { 
@@ -31,47 +33,61 @@
             margin-bottom: 1rem;
         }
         .header .badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
             font-size: 0.7rem;
             background: #d4af37;
             color: #000000;
-            padding: 0.2rem 0.6rem;
+            padding: 0.3rem 0.7rem;
             border-radius: 999px;
             font-weight: 800;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
         }
+        .header .badge .online-dot {
+            width: 7px;
+            height: 7px;
+            background: #00ff00;
+            border-radius: 50%;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
         .header h1 {
-            font-size: clamp(1.4rem, 3vw, 2.2rem);
+            font-size: clamp(1.5rem, 4vw, 2.3rem);
             font-weight: 800;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.4rem;
             color: #d4af37;
+            line-height: 1.2;
         }
         .header p {
             color: #c5c5c5;
-            font-size: 0.9rem;
-            line-height: 1.4;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .header p strong {
+            color: #ffffff;
         }
         .location-status {
             background: rgba(212, 175, 55, 0.1);
             border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 999px;
-            padding: 0.4rem 0.8rem;
+            padding: 0.5rem 0.9rem;
             margin-bottom: 0.8rem;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #d4af37;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 0.3rem;
+            gap: 0.4rem;
             max-width: 400px;
             width: 100%;
+            font-weight: 600;
         }
         .location-status .dot {
             width: 8px;
             height: 8px;
-            background: #d4af37;
+            background: #00ff00;
             border-radius: 50%;
             animation: pulse 2s ease-in-out infinite;
         }
@@ -111,15 +127,28 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            padding: 2rem 1rem 1rem 1rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.95));
+            padding: 2.5rem 1rem 1rem 1rem;
             z-index: 10;
         }
         .girl-info .name {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             font-weight: 800;
             color: #ffffff;
             margin-bottom: 0.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .girl-info .name .online-badge {
+            font-size: 0.65rem;
+            background: #00ff00;
+            color: #000000;
+            padding: 0.15rem 0.4rem;
+            border-radius: 999px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
         }
         .girl-info .distance {
             font-size: 0.85rem;
@@ -174,13 +203,13 @@
         .btn-enter {
             display: block;
             width: 100%;
-            padding: 1rem 1rem;
+            padding: 1.1rem 1rem;
             background: linear-gradient(135deg, #d4af37, #aa820a);
             color: #000000;
             border: none;
             border-radius: 999px;
             font-weight: 800;
-            font-size: clamp(0.75rem, 3.8vw, 1.05rem); 
+            font-size: clamp(0.8rem, 4vw, 1.1rem); 
             white-space: nowrap; 
             overflow: hidden;
             text-overflow: ellipsis;
@@ -190,10 +219,37 @@
             transition: transform 0.2s, box-shadow 0.2s;
             text-transform: uppercase;
             letter-spacing: 0.02em;
+            animation: ctaPulse 2.5s ease-in-out infinite;
+        }
+        @keyframes ctaPulse {
+            0%, 100% { 
+                box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 6px 30px rgba(212, 175, 55, 0.7);
+                transform: scale(1.02);
+            }
         }
         .btn-enter:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.6);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 35px rgba(212, 175, 55, 0.8);
+            animation: none;
+        }
+        .cta-microcopy {
+            margin-top: 0.6rem;
+            font-size: 0.75rem;
+            color: #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            flex-wrap: wrap;
+        }
+        .cta-microcopy span {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
         }
         .banner-container {
             margin-top: 30px;
@@ -232,14 +288,17 @@
 <body>
 
     <div class="header">
-        <span class="badge">🔥 Local Matches • Available Now</span>
-        <h1>Girls Near You Tonight</h1>
-        <p>These are the 10 hottest girls closest to your location. Confirm you're 18+ and sign up to chat with them and many more!</p>
+        <span class="badge">
+            <span class="online-dot"></span>
+            <span id="online-count">287 Girls Online Near You</span>
+        </span>
+        <h1 id="main-headline">Hot Girls Near You Want to Meet Right Now</h1>
+        <p id="sub-headline">We found <strong>10 girls near you</strong> looking to chat right now. Sign up <strong>free in under 30 seconds</strong> — no credit card needed.</p>
     </div>
 
     <div class="location-status" id="location-status">
         <span class="dot"></span>
-        <span id="location-text">Detecting your location...</span>
+        <span id="location-text">Girls Active Near You</span>
     </div>
 
     <div class="gallery-container">
@@ -249,14 +308,24 @@
             <button class="nav next" onclick="changeImage(1)">›</button>
             <div class="gallery-counter"><span id="counter">1 / 10</span></div>
             <div class="girl-info">
-                <div class="name" id="girl-name">Jessica, 24</div>
+                <div class="name">
+                    <span id="girl-name">Jessica, 24</span>
+                    <span class="online-badge">🟢 Online</span>
+                </div>
                 <div class="distance" id="girl-distance">📍 2.3 miles away</div>
             </div>
         </div>
     </div>
 
     <div class="cta-box">
-        <a href="https://connectorlink.online/a/BBqWGt1DOTWwO5" class="btn-enter">I'm 18+ — Show Me Girls Near Me 🔓</a>
+        <a href="https://connectorlink.online/a/BBqWGt1DOTWwO5" class="btn-enter">Start Chatting Now — 100% Free 🔓</a>
+        <div class="cta-microcopy">
+            <span>✓ Free signup</span>
+            <span>•</span>
+            <span>✓ No credit card</span>
+            <span>•</span>
+            <span>✓ Private & discreet</span>
+        </div>
     </div>
 
     <div class="banner-container" id="banner-container">
@@ -304,6 +373,8 @@
         let current = 0;
         let autoTimer = null;
         const ROTATE_INTERVAL = 3000;
+        let onlineCount = 0;
+        let locationLabel = "Near You";
         
         const preloadedImages = [];
         function preloadAll() {
@@ -318,8 +389,9 @@
             showImage(0);
             startAutoRotate();
             preloadAll();
-            getLocationByIP();
+            getLocationOptimized();
             showBannerWithDelay();
+            startOnlineCounter();
         }
 
         function showImage(index) {
@@ -347,20 +419,96 @@
             startAutoRotate();
         }
 
-        function getLocationByIP() {
-            fetch('https://ipapi.co/json/')
-                .then(response => response.json())
-                .then(data => {
-                    const state = data.region || "";
-                    const country = data.country_name || "";
-                    const displayLocation = state || country || "your area";
-                    document.getElementById("location-text").textContent = 
-                        `10 girls found near ${displayLocation}`;
+        function toTitleCase(str) {
+            return str.replace(/\w\S*/g, function(txt) {
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
+        }
+
+        function getLocationOptimized() {
+            const cachedLocation = localStorage.getItem('userState');
+            if (cachedLocation) {
+                applyPersonalization(cachedLocation);
+                return;
+            }
+
+            const dbipPromise = fetch('https://api.db-ip.com/v2/free/self')
+                .then(res => res.json())
+                .then(data => ({ region: data.stateProv }));
+
+            const ipapiPromise = fetch('https://ipapi.co/json/')
+                .then(res => res.json())
+                .then(data => ({ region: data.region }));
+
+            const ipwhoPromise = fetch('https://ipwho.is/')
+                .then(res => res.json())
+                .then(data => ({ region: data.region }));
+
+            const requireRegion = (p) => p.then(loc => {
+                if (loc.region && String(loc.region).trim() !== "") return loc;
+                throw new Error('no-region');
+            });
+
+            const promises = [
+                requireRegion(dbipPromise),
+                requireRegion(ipapiPromise),
+                requireRegion(ipwhoPromise)
+            ];
+
+            const anyPromise = (typeof Promise.any === 'function') 
+                ? Promise.any(promises) 
+                : promises[0];
+
+            anyPromise
+                .then(location => {
+                    localStorage.setItem('userState', location.region);
+                    applyPersonalization(location.region);
                 })
                 .catch(() => {
-                    document.getElementById("location-text").textContent = 
-                        "10 girls available in your area";
+                    // Silencioso: mantiene los textos por defecto
                 });
+        }
+
+        function applyPersonalization(state) {
+            const stateFormatted = toTitleCase(state);
+            const headline = document.getElementById("main-headline");
+            const subline = document.getElementById("sub-headline");
+            const locationStatus = document.getElementById("location-text");
+            
+            headline.textContent = `Hot Girls in ${stateFormatted} Want to Meet Right Now`;
+            
+            subline.innerHTML = `We found <strong>10 girls in ${stateFormatted}</strong> looking to chat right now. Sign up <strong>free in under 30 seconds</strong> — no credit card needed.`;
+            
+            locationStatus.textContent = `📍 ${stateFormatted} • Girls Active Right Now`;
+            
+            locationLabel = `in ${stateFormatted}`;
+            updateOnlineCount();
+        }
+
+        function startOnlineCounter() {
+            onlineCount = 200 + Math.floor(Math.random() * 151);
+            if (onlineCount % 10 === 0) onlineCount += 3;
+            
+            updateOnlineCount();
+            
+            function tick() {
+                const magnitude = 1 + Math.floor(Math.random() * 15);
+                const direction = Math.random() < 0.5 ? -1 : 1;
+                onlineCount += magnitude * direction;
+                
+                onlineCount = Math.max(187, Math.min(368, onlineCount));
+                
+                updateOnlineCount();
+                
+                setTimeout(tick, 4000 + Math.random() * 8000);
+            }
+            
+            setTimeout(tick, 3000 + Math.random() * 5000);
+        }
+
+        function updateOnlineCount() {
+            document.getElementById("online-count").textContent = 
+                `${onlineCount} Girls Online ${locationLabel}`;
         }
 
         function showBannerWithDelay() {
