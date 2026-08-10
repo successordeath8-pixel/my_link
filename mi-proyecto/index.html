@@ -52,6 +52,7 @@
             background: #00ff00;
             border-radius: 50%;
             animation: pulse 1.5s ease-in-out infinite;
+            flex-shrink: 0;
         }
         .header h1 {
             font-size: clamp(1.5rem, 4vw, 2.3rem);
@@ -74,7 +75,7 @@
             border-radius: 999px;
             padding: 0.5rem 0.9rem;
             margin-bottom: 0.8rem;
-            font-size: 0.85rem;
+            font-size: clamp(0.68rem, 3.4vw, 0.85rem);
             color: #d4af37;
             display: flex;
             align-items: center;
@@ -83,6 +84,7 @@
             max-width: 400px;
             width: 100%;
             font-weight: 600;
+            overflow: hidden;
         }
         .location-status .dot {
             width: 8px;
@@ -90,6 +92,12 @@
             background: #00ff00;
             border-radius: 50%;
             animation: pulse 2s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+        .location-status #location-text {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         @keyframes pulse {
             0%, 100% { opacity: 1; transform: scale(1); }
@@ -292,13 +300,13 @@
             <span class="online-dot"></span>
             <span id="online-count">287 Girls Online Near You</span>
         </span>
-        <h1 id="main-headline">Hot Girls Near You Want to Meet Right Now</h1>
-        <p id="sub-headline">We found <strong>10 girls near you</strong> looking to chat right now. Sign up <strong>free in under 30 seconds</strong> — no credit card needed.</p>
+        <h1>Hot Girls Near You Looking to Have Fun Right Now</h1>
+        <p>They're online and ready to chat. Sign up <strong>free in under 30 seconds</strong> — no credit card needed.</p>
     </div>
 
     <div class="location-status" id="location-status">
         <span class="dot"></span>
-        <span id="location-text">Girls Active Near You</span>
+        <span id="location-text">📍 10 Girls Closest to Your Current Location</span>
     </div>
 
     <div class="gallery-container">
@@ -470,18 +478,7 @@
         }
 
         function applyPersonalization(state) {
-            const stateFormatted = toTitleCase(state);
-            const headline = document.getElementById("main-headline");
-            const subline = document.getElementById("sub-headline");
-            const locationStatus = document.getElementById("location-text");
-            
-            headline.textContent = `Hot Girls in ${stateFormatted} Want to Meet Right Now`;
-            
-            subline.innerHTML = `We found <strong>10 girls in ${stateFormatted}</strong> looking to chat right now. Sign up <strong>free in under 30 seconds</strong> — no credit card needed.`;
-            
-            locationStatus.textContent = `📍 ${stateFormatted} • Girls Active Right Now`;
-            
-            locationLabel = `in ${stateFormatted}`;
+            locationLabel = `in ${toTitleCase(state)}`;
             updateOnlineCount();
         }
 
