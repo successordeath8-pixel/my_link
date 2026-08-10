@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exclusive Models — Private Gallery</title>
+    <title>Girls Near You — Local Matches Tonight</title>
     
-    <!-- Optimización de Cloudflare: Precarga la conexión al destino -->
-    <link rel="preconnect" href="https://goddessgridhq.com">
-    <link rel="dns-prefetch" href="https://goddessgridhq.com">
+    <link rel="preconnect" href="https://connectorlink.online">
+    <link rel="dns-prefetch" href="https://connectorlink.online">
 
     <style>
         * { 
@@ -54,6 +53,32 @@
             font-size: 0.9rem;
             line-height: 1.4;
         }
+        .location-status {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 999px;
+            padding: 0.4rem 0.8rem;
+            margin-bottom: 0.8rem;
+            font-size: 0.8rem;
+            color: #d4af37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            max-width: 400px;
+            width: 100%;
+        }
+        .location-status .dot {
+            width: 8px;
+            height: 8px;
+            background: #d4af37;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
         .gallery-container {
             width: 100%;
             max-width: 400px;
@@ -80,6 +105,26 @@
             height: 100%;
             object-fit: contain;
             background-color: #000000;
+        }
+        .girl-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 2rem 1rem 1rem 1rem;
+            z-index: 10;
+        }
+        .girl-info .name {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 0.2rem;
+        }
+        .girl-info .distance {
+            font-size: 0.85rem;
+            color: #d4af37;
+            font-weight: 600;
         }
         .gallery-main .nav {
             position: absolute;
@@ -110,7 +155,7 @@
         }
         .gallery-counter {
             position: absolute;
-            bottom: 10px;
+            top: 10px;
             right: 12px;
             background: rgba(0,0,0,0.7);
             border: 1px solid #d4af37;
@@ -126,7 +171,6 @@
             width: 100%;
             max-width: 400px;
         }
-        /* Botón convertido en etiqueta <a> con enlace directo para máxima velocidad */
         .btn-enter {
             display: block;
             width: 100%;
@@ -151,35 +195,116 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 25px rgba(212, 175, 55, 0.6);
         }
+        .banner-container {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .banner-container.visible {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .banner-container.fade-in {
+            opacity: 1;
+        }
+        .banner-mobile {
+            display: none;
+        }
+        .banner-desktop {
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .banner-mobile {
+                display: block;
+            }
+        }
+        @media (min-width: 769px) {
+            .banner-desktop {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <span class="badge">🔥 VIP Access • Uncensored</span>
-        <h1>Exclusive Creators Private Gallery</h1>
-        <p>Unlock exclusive, uncensored content from our top creators of the moment.</p>
+        <span class="badge">🔥 Local Matches • Available Now</span>
+        <h1>Girls Near You Tonight</h1>
+        <p>These are the 10 hottest girls closest to your location. Confirm you're 18+ and sign up to chat with them and many more!</p>
+    </div>
+
+    <div class="location-status" id="location-status">
+        <span class="dot"></span>
+        <span id="location-text">Detecting your location...</span>
     </div>
 
     <div class="gallery-container">
         <div class="gallery-main">
             <button class="nav prev" onclick="changeImage(-1)">‹</button>
-            <img id="main-image" src="" alt="Preview Model">
+            <img id="main-image" src="" alt="Local Match">
             <button class="nav next" onclick="changeImage(1)">›</button>
             <div class="gallery-counter"><span id="counter">1 / 10</span></div>
+            <div class="girl-info">
+                <div class="name" id="girl-name">Jessica, 24</div>
+                <div class="distance" id="girl-distance">📍 2.3 miles away</div>
+            </div>
         </div>
     </div>
 
     <div class="cta-box">
-        <!-- Enlace HTML directo recomendado por Cloudflare -->
-        <a href="https://goddessgridhq.com" class="btn-enter">Confirm 18+ & Watch Now Free 🔓</a>
+        <a href="https://connectorlink.online/a/BBqWGt1DOTWwO5" class="btn-enter">I'm 18+ — Show Me Girls Near Me 🔓</a>
+    </div>
+
+    <div class="banner-container" id="banner-container">
+        <div class="banner-mobile">
+            <script>
+              atOptions = {
+                'key' : '85b85fb02c6d10690f1d425a65af7d5d',
+                'format' : 'iframe',
+                'height' : 50,
+                'width' : 320,
+                'params' : {}
+              };
+            </script>
+            <script src="https://onionclose.com/85b85fb02c6d10690f1d425a65af7d5d/invoke.js"></script>
+        </div>
+        <div class="banner-desktop">
+            <script>
+              atOptions = {
+                'key' : 'b14b4a2380e0a932c4b6d43848c9500e',
+                'format' : 'iframe',
+                'height' : 90,
+                'width' : 728,
+                'params' : {}
+              };
+            </script>
+            <script src="https://onionclose.com/b14b4a2380e0a932c4b6d43848c9500e/invoke.js"></script>
+        </div>
     </div>
 
     <script>
+        const GIRLS = [
+            { name: "Jessica", age: 24, distance: "2.3" },
+            { name: "Ashley", age: 22, distance: "3.1" },
+            { name: "Megan", age: 26, distance: "4.7" },
+            { name: "Brittany", age: 23, distance: "5.2" },
+            { name: "Taylor", age: 25, distance: "6.8" },
+            { name: "Samantha", age: 24, distance: "7.4" },
+            { name: "Emily", age: 22, distance: "8.9" },
+            { name: "Lauren", age: 27, distance: "9.5" },
+            { name: "Nicole", age: 23, distance: "11.2" },
+            { name: "Danielle", age: 25, distance: "12.8" }
+        ];
+
         const IMAGES = Array.from({length: 10}, (_, i) => `img/${String(i + 1).padStart(2, '0')}.jpg`);
         let current = 0;
         let autoTimer = null;
         const ROTATE_INTERVAL = 3000;
+        let userCity = "your area";
         
         const preloadedImages = [];
         function preloadAll() {
@@ -194,6 +319,8 @@
             showImage(0);
             startAutoRotate();
             preloadAll();
+            getLocationByIP();
+            showBannerWithDelay();
         }
 
         function showImage(index) {
@@ -201,6 +328,10 @@
             const mainImg = document.getElementById("main-image");
             mainImg.src = IMAGES[current];
             document.getElementById("counter").textContent = `${current + 1} / ${IMAGES.length}`;
+            
+            const girl = GIRLS[current];
+            document.getElementById("girl-name").textContent = `${girl.name}, ${girl.age}`;
+            document.getElementById("girl-distance").textContent = `📍 ${girl.distance} miles away`;
         }
 
         function changeImage(dir) {
@@ -215,6 +346,43 @@
         function restartAutoRotate() {
             clearInterval(autoTimer);
             startAutoRotate();
+        }
+
+        function getLocationByIP() {
+            fetch('https://ipapi.co/json/')
+                .then(response => response.json())
+                .then(data => {
+                    userCity = data.city || "your area";
+                    const state = data.region || "";
+                    const displayLocation = state ? `${userCity}, ${state}` : userCity;
+                    document.getElementById("location-text").textContent = 
+                        `10 girls found near ${displayLocation}`;
+                })
+                .catch(error => {
+                    fetch('http://ip-api.com/json/')
+                        .then(response => response.json())
+                        .then(data => {
+                            userCity = data.city || "your area";
+                            const state = data.regionName || "";
+                            const displayLocation = state ? `${userCity}, ${state}` : userCity;
+                            document.getElementById("location-text").textContent = 
+                                `10 girls found near ${displayLocation}`;
+                        })
+                        .catch(() => {
+                            document.getElementById("location-text").textContent = 
+                                "10 girls available in your area";
+                        });
+                });
+        }
+
+        function showBannerWithDelay() {
+            setTimeout(() => {
+                const bannerContainer = document.getElementById('banner-container');
+                bannerContainer.classList.add('visible');
+                setTimeout(() => {
+                    bannerContainer.classList.add('fade-in');
+                }, 50);
+            }, 3000);
         }
 
         window.addEventListener('DOMContentLoaded', initGallery);
