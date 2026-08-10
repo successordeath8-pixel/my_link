@@ -304,7 +304,6 @@
         let current = 0;
         let autoTimer = null;
         const ROTATE_INTERVAL = 3000;
-        let userCity = "your area";
         
         const preloadedImages = [];
         function preloadAll() {
@@ -352,26 +351,15 @@
             fetch('https://ipapi.co/json/')
                 .then(response => response.json())
                 .then(data => {
-                    userCity = data.city || "your area";
                     const state = data.region || "";
-                    const displayLocation = state ? `${userCity}, ${state}` : userCity;
+                    const country = data.country_name || "";
+                    const displayLocation = state || country || "your area";
                     document.getElementById("location-text").textContent = 
                         `10 girls found near ${displayLocation}`;
                 })
-                .catch(error => {
-                    fetch('http://ip-api.com/json/')
-                        .then(response => response.json())
-                        .then(data => {
-                            userCity = data.city || "your area";
-                            const state = data.regionName || "";
-                            const displayLocation = state ? `${userCity}, ${state}` : userCity;
-                            document.getElementById("location-text").textContent = 
-                                `10 girls found near ${displayLocation}`;
-                        })
-                        .catch(() => {
-                            document.getElementById("location-text").textContent = 
-                                "10 girls available in your area";
-                        });
+                .catch(() => {
+                    document.getElementById("location-text").textContent = 
+                        "10 girls available in your area";
                 });
         }
 
